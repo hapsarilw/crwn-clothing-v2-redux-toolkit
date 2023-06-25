@@ -27,7 +27,7 @@ const App = () => {
       // created a new object and pass it to user variable
       const pickedUser = user && (({ accessToken, email }) => ({ accessToken, email })) (user);
       // generate action creator
-      console.log(setCurrentUser(pickedUser))
+      //console.log(setCurrentUser(pickedUser))
       dispatch(setCurrentUser(pickedUser));
     });
 

@@ -31,7 +31,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     // turn off middleware completely
     serializableCheck: false,
-  }).concat(middleWares),  // will override all default middlewares
+  })//.concat(middleWares),  // will override all default middlewares
 });
   
 // export const persistor = persistStore(store);
