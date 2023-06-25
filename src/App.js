@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Routes, Route } from 'react-router-dom';
 
@@ -12,17 +12,23 @@ import Navigation from './routes/navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
-import { setCurrentUser } from './store/user/user.action';
+import { setCurrentUser } from './store/user/user.reducer';
 
 const App = () => {
   const dispatch = useDispatch();
+  
+  // test.sort();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
       if (user) {
         createUserDocumentFromAuth(user);
       }
-      dispatch(setCurrentUser(user));
+      // created a new object and pass it to user variable
+      const pickedUser = user && (({ accessToken, email }) => ({ accessToken, email })) (user);
+      // generate action creator
+      console.log(setCurrentUser(pickedUser))
+      dispatch(setCurrentUser(pickedUser));
     });
 
     return unsubscribe;
